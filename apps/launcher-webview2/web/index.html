@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' https://douyinpic.com https://*.douyinpic.com https://douyinpic.com.cn https://*.douyinpic.com.cn https://byteimg.com https://*.byteimg.com https://byteimg.com.cn https://*.byteimg.com.cn">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>抖音聚合登录器</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:'Microsoft YaHei',sans-serif;background:#f5f7fb;color:#283954;font-size:14px}header{min-height:84px;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:#fff;border-bottom:1px solid #e7edf5}h1{font-size:22px;margin:0 0 5px}.subtitle{font-size:12px;color:#8b98aa}.user-tools{display:flex;gap:14px;align-items:center;color:#8695aa}button,select{font:inherit;border:1px solid #dfe5ee;background:white;border-radius:6px;padding:8px 14px;color:#52627a}button:disabled{cursor:not-allowed;opacity:.55}.primary{background:#409eff;color:white;border-color:#409eff}main{margin:24px;background:white;border-radius:12px;min-height:480px;padding:22px}.toolbar{display:flex;gap:12px;margin-bottom:20px}.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.filters select{min-width:135px}.count{margin-left:auto;color:#909bac;font-size:12px}table{width:100%;border-collapse:collapse;text-align:left}th{background:#f7f9fc;padding:15px 12px;font-weight:500;color:#6b7890;border-bottom:1px solid #e9edf3}td{padding:75px 12px;text-align:center;color:#97a3b4;border-bottom:1px solid #edf0f5}.notice{padding:10px 14px;background:#f0f6ff;color:#7188a7;border-radius:6px;font-size:12px;margin-bottom:20px}footer{font-size:12px;text-align:center;color:#97a4b6}
+  </style>
+  <style>
+    :root{--ink:#202a36;--muted:#778392;--line:#dfe5eb;--bg:#f1f3f5;--surface:#fff;--navy:#243140;--blue:#356fe5;--blue-soft:#edf3ff;--green:#2c8a63;--amber:#b7791f}
+    *{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-size:13px}header{min-height:70px;padding:15px 26px;background:var(--navy);border-bottom:0;color:#fff}h1{font-size:18px;letter-spacing:.2px;margin:0 0 4px}.subtitle{color:#aeb9c7;font-size:11px}.user-tools{gap:10px;color:#bec9d6}.user-tools button{background:transparent;border-color:#526174;color:#d3dbe5}.user-tools button:not(:disabled):hover{background:#344355}.user-tools button:disabled{color:#94a0af;border-color:#465568}.user-tools #launcher-logout{color:#fff;border-color:#6981a1}.user-tools span{font-size:12px;color:#d6dee8}main{margin:18px 22px 16px;background:var(--surface);border:1px solid var(--line);border-radius:7px;min-height:calc(100vh - 124px);padding:20px 22px;box-shadow:0 3px 10px rgba(26,37,49,.04)}main>section:first-child{padding:15px 16px!important;background:#fafbfc;border:1px solid #e8edf2;border-radius:6px}main>section:first-child strong{font-size:14px}main>section:first-child p{margin:8px 0;color:var(--muted);font-size:12px}.notice{background:var(--blue-soft);color:#5e7190;border:1px solid #d9e5fb;border-radius:5px}.toolbar{gap:8px;margin:17px 0}.toolbar button{border-radius:5px}.primary{background:var(--blue);border-color:var(--blue)}.primary:hover{background:#2c5fc9;border-color:#2c5fc9}.filters{gap:8px;margin-bottom:14px}.filters select{min-width:125px;background:#fff}.count{color:#7f8a97}table{border:1px solid #e6ebef;border-radius:5px;overflow:hidden}th{background:#f6f8fa;padding:12px;color:#687583;font-size:12px}td{padding:14px 11px}.account-tag{border-radius:4px}.account-tag.source{color:var(--green);background:#f0faf5;border-color:#d3ecdf}.account-tag.warning{color:var(--amber);background:#fff9ef;border-color:#f0ddb8}.account-actions{gap:8px}.account-actions .link{color:var(--blue)}footer{color:#909ba7;font-size:11px}.account-dialog{border:1px solid var(--line);border-radius:8px;box-shadow:0 18px 55px rgba(24,35,48,.22)}.account-dialog h2{font-size:17px;margin-bottom:20px}.account-dialog .network-fields,.account-dialog .client-tools,.account-dialog .account-progress{border-radius:5px;background:#f7f9fb}.account-dialog input,.account-dialog select{border-radius:5px;border-color:#d6dee7}.account-dialog footer{border-top:1px solid #e8edf2;padding-top:14px}
+  </style>
+  <style>
+    [data-account-rows] td{padding:16px 12px;text-align:left;color:#52627a}
+    [data-account-rows] td[colspan]{padding:75px 12px;text-align:center;color:#97a3b4}
+    [data-account-rows] small{display:block;color:#909bac;margin-top:6px}
+    .account-photo{display:block;width:34px;height:34px;border-radius:50%;object-fit:cover;background:#edf1f7}
+    .account-tag{display:inline-block;padding:3px 7px;border-radius:4px;font-size:12px;line-height:1;color:#52627a;border:1px solid #e2e8f0;background:#f8fafc}
+    .account-tag.source{color:#37a447;background:#effbef;border-color:#d4f1d5}
+    .account-tag.warning{color:#d88a28;background:#fff9ef;border-color:#f9e3bd}
+    .account-tag.danger{color:#d9534f;background:#fff2f1;border-color:#f6cfcc}
+    .account-actions{display:flex;align-items:center;gap:10px;white-space:nowrap}.account-actions .link{border:0;background:none;padding:3px 0;color:#409eff}.account-actions .link.success{color:#67c23a}.account-actions .link.danger{color:#f56c6c}.account-actions .link:disabled{color:#b8c1cf;opacity:1}
+    #accounts-error{color:#c45656}
+    body.booting main,body.booting footer{visibility:hidden}body.booting:after{content:'正在读取登录状态…';position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#f1f3f5;color:#65758b;font-size:14px;z-index:20}
+  </style>
+  <style>
+    #login-screen{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e9f1f1 0%,#f1f3f5 60%)}
+    body:not(.logged-out) #login-screen{display:none}
+    body.logged-out header,body.logged-out main,body.logged-out footer{display:none}
+    body.booting #login-screen{visibility:hidden}
+    .login-card{width:360px;max-width:92vw;padding:36px 34px 28px;background:#fff;border:1px solid #dfe5eb;border-radius:10px;box-shadow:0 12px 40px rgba(26,37,49,.10);text-align:center}
+    .login-logo{display:block;margin:0 auto 14px;border-radius:16px}
+    .login-card h2{margin:0 0 6px;font-size:20px;color:#202a36}
+    .login-sub{margin:0 0 22px;color:#778392;font-size:12px}
+    #node-login{display:flex;flex-direction:column;gap:12px}
+    #node-login input,#node-bind input{width:100%;padding:11px 12px;border:1px solid #d6dee7;border-radius:6px;font:inherit}
+    #node-login input:focus,#node-bind input:focus{outline:2px solid #bcd7d8;border-color:#2f6f72}
+    #node-login button.primary{width:100%;padding:11px;background:#2f6f72;border-color:#2f6f72}
+    #node-login button.primary:hover:not(:disabled){background:#245c60;border-color:#245c60}
+    #node-status{margin:16px 0 0;color:#778392;font-size:12px;min-height:16px}
+    #node-error{margin:6px 0 0;color:#c45656;font-size:12px;min-height:16px}
+    .header-logo{border-radius:8px;margin-right:12px}
+    header{justify-content:flex-start}header .user-tools{margin-left:auto}
+    header>div:first-of-type{flex:0 1 auto}
+  </style>
+</head>
+<body class="logged-out">
+  <div id="login-screen" aria-label="登录">
+    <div class="login-card">
+      <img class="login-logo" src="logo.png" alt="抖音聚合" width="72" height="72">
+      <h2>抖音聚合登录器</h2>
+      <p class="login-sub">请使用抖音聚合租户账号登录</p>
+      <form id="node-login">
+        <input id="tenant-name" aria-label="租户用户名" placeholder="租户用户名" autocomplete="username" maxlength="32">
+        <input id="tenant-password" aria-label="租户密码" type="password" placeholder="密码" autocomplete="current-password" maxlength="128">
+        <button class="primary" type="submit">登录</button>
+      </form>
+      <form id="node-bind" hidden><input id="pair-code" aria-label="网页生成的绑定码" placeholder="兼容旧版绑定码" autocomplete="off" maxlength="64"><button type="submit">绑定旧版登录器</button></form>
+      <p id="node-status" role="status">正在读取登录状态…</p>
+      <p id="node-error" role="alert"></p>
+    </div>
+  </div>
+  <header><img class="header-logo" src="logo.png" alt="" width="34" height="34"><div><h1>抖音聚合登录器</h1><span class="subtitle">账号登录与数据同步</span></div><div class="user-tools"><button id="launcher-update">检查更新</button><span id="launcher-user">未登录</span><button id="launcher-logout" hidden>退出登录</button><span id="launcher-wallet" title="积分卡请在网页端兑换">正式 —　测试 —</span></div></header>
+  <main>
+    <div class="notice" role="status">本地账号可独立添加；正在检查网页服务。</div>
+    <details style="margin-bottom:16px;color:#8695aa;font-size:12px"><summary>连接详情</summary><p id="connection-details"></p></details>
+    <div class="toolbar"><button class="primary" id="add-account">添加账号</button><button disabled>代理管理</button><button id="refresh-accounts">刷新列表</button><button id="check-connection">检测连接</button></div>
+    <p id="accounts-error" role="alert"></p>
+    <div class="filters"><select aria-label="账号状态" disabled><option value="all">全部状态</option></select><select aria-label="坑位" disabled><option value="all">全部坑位</option></select><select aria-label="账号来源" disabled><option value="all">全部来源</option></select><select aria-label="排序" disabled><option value="newest">新账号优先</option></select><span class="count" data-account-count>账号数量：0</span></div>
+    <table aria-label="账号列表"><thead><tr><th>头像</th><th>昵称</th><th>抖音号</th><th>来源</th><th>坑位</th><th>当前 IP</th><th>状态</th><th>操作</th></tr></thead><tbody data-account-rows><tr><td colspan="8">暂无已连接账号</td></tr></tbody></table>
+  </main>
+  <footer>抖音聚合 · Windows 登录器</footer>
+  <script src="index.js"></script>
+  <script src="modules/accounts/list.js"></script>
+  <script src="modules/accounts/add-account.js"></script>
+  <script src="modules/nodes/connection.js"></script>
+</body>
+</html>

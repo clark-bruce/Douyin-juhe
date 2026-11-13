@@ -1,0 +1,1 @@
+{"name":"@douyinjuhe/api","version":"0.1.0","private":true,"type":"module","engines":{"node":">=22.5"},"scripts":{"start":"node src/index.js"},"dependencies":{"@douyinjuhe/contracts":"0.1.0","ws":"^8.18.3"}}

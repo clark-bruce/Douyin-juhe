@@ -1,0 +1,30 @@
+{
+  "name": "douyinjuhe",
+  "description": "多租户的抖音账号聚合管理系统：Windows 登录器 + 网页端私信收发",
+  "license": "AGPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "workspaces": [
+    "apps/web",
+    "services/api",
+    "packages/contracts",
+    "packages/api-client"
+  ],
+  "scripts": {
+    "start": "node tools/start-local.mjs",
+    "start:api": "node services/api/src/index.js",
+    "build:web": "npm --workspace @douyinjuhe/web run build",
+    "build:launcher": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-launcher.ps1",
+    "test": "node --test services/api/tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "element-plus": "^2.11.0",
+    "vite": "^6.4.3",
+    "vue": "^3.5.13"
+  }
+}

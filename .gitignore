@@ -1,0 +1,22 @@
+# 依赖与构建产物
+node_modules/
+build/
+apps/web/dist/
+
+# 本机运行数据：数据库与材料私钥，绝不能提交
+data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.pem
+
+# 环境配置与日志
+.env
+.env.*
+!.env.example
+*.log
+
+# 编译输出
+*.exe
+*.zip
+__pycache__/

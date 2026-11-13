@@ -1,0 +1,9 @@
+{
+  "name": "@douyinjuhe/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"dev": "vite --host 127.0.0.1 --port 18181 --strictPort", "build": "vite build"},
+  "dependencies": {"@douyinjuhe/api-client":"0.1.0","heic2any": "^0.0.4", "vue": "^3.5.0", "element-plus": "^2.11.0", "@element-plus/icons-vue": "^2.3.1"},
+  "devDependencies": {"vite": "^6.4.0", "@vitejs/plugin-vue": "^5.2.0"}
+}

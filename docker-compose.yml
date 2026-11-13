@@ -1,0 +1,14 @@
+# 用法：docker compose up -d --build
+# 网页与 API 都在 http://<服务器地址>:18182
+services:
+  douyinjuhe:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "18182:18182"
+    volumes:
+      - douyinjuhe-data:/data
+    # 可选配置见 .env.example；需要时取消下一行注释并创建 .env
+    # env_file: .env
+volumes:
+  douyinjuhe-data:

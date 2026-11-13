@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="抖音聚合">
+  <defs>
+    <g id="dj-bubble">
+      <rect x="56" y="62" width="144" height="104" rx="28"/>
+      <path d="M90 150 V204 L138 160 Z"/>
+    </g>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="#161823"/>
+  <use href="#dj-bubble" fill="#25F4EE" transform="translate(-9 -9)"/>
+  <use href="#dj-bubble" fill="#FE2C55" transform="translate(9 9)"/>
+  <use href="#dj-bubble" fill="#FFFFFF"/>
+  <g fill="#161823">
+    <circle cx="98" cy="114" r="10"/>
+    <circle cx="128" cy="114" r="10"/>
+    <circle cx="158" cy="114" r="10"/>
+  </g>
+</svg>
